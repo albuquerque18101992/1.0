@@ -10,10 +10,14 @@ Paulo Albuquerque
     </head>
     <body>
         <?php
+        //Incluso arquivo de config
+        require './core/Config.php';
+        //Incluso Composer autoload
         require './vendor/autoload.php';
-        
+
         use Core\ConfigController as Home;
         $url = new Home();
+        $url->carregar();   
         ?>
     </body>
 </html>

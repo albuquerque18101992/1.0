@@ -5,6 +5,8 @@ namespace Core;
 class ConfigController {
 
     //Atibutos
+    //
+    //
     private string $url;
     private array $urlConjunto;
     private string $urlController;
@@ -33,7 +35,7 @@ class ConfigController {
             if (isset($this->urlConjunto[0])) {
                 $this->urlController = $this->slugController($this->urlConjunto[0]);
             } else {
-                $this->urlController = "<br> Home <br>";
+                $this->urlController = CONTROLLER;
             }
 
             //Condição para posição [1] do Array urlConjunto
@@ -43,7 +45,7 @@ class ConfigController {
                 $this->urlParametro = "";
             }
         } else {
-            $this->urlController = "<br> Home-Página Inicial, quando não for passado nada na URL <br>";
+            $this->urlController = CONTROLLER;
             $this->urlParametro = "";
         }
 
@@ -78,6 +80,15 @@ class ConfigController {
         $this->urlSlugController = str_replace(" ", "", $this->urlSlugController);
 
         return $this->urlSlugController;
+    }
+
+    //Carregando as páginas do dir app/sts/Controllers, ou seja carregando as controllers
+    public function carregar() {
+        //Pegando de forma dinamica o endereço da barra de navegação e incluindo no fim do caminho, por exempolo www.google.com.br/dir/qualquer_valor_digitado
+        //qualquer_valor_digitado é a mesma coisa que a var $this->urlController
+        $classe = "\\App\\sts\\Controllers\\" . $this->urlController;
+        $classeCarregar = new $classe();
+        $classeCarregar->index();
     }
 
 }
