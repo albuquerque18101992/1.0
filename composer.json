@@ -1,0 +1,16 @@
+{
+    "description": "Projeto",
+    "authors": [
+        {
+            "name": "Paulo Albuquerque",
+            "email": "albuquerque.18101992@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core"
+        }
+    },
+
+    "require": {}
+}

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+#Permitir a reescrita em diretorios
+RewriteCond %{REQUEST_FILENAME} !-d
+#Permitir a reescrita em diretorios
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+#Receber o que o usuario colocar na barra de endereço do navegador
+#Variavel url sendo enviada para o arquivo ConfigController via GET
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
