@@ -2,8 +2,8 @@
 
 namespace App\sts\Controllers;
 
-//Não permitir o acesso diretamente de nenhuma arquivo
-if (!defined('URL')) {
+//Não permitir o acesso diretamente de nenhuma arquivo, segurança
+if (!defined('48b5t9')) {
     header("Location: /");
     die("ERRO: Página não encontrada!");
 }
@@ -14,7 +14,9 @@ class Erro {
     //
     //
     public function index() {
-        echo "Página Erro! <br>";
+        $this->dados = [];
+        $carregarView = new \Core\ConfigView("sts/Views/erro/erro", $this->dados);
+        $carregarView->renderizar();
     }
 
 }

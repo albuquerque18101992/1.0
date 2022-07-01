@@ -2,7 +2,14 @@
 
 namespace Core;
 
-class ConfigController {
+//Não permitir o acesso diretamente de nenhuma arquivo, segurança
+if (!defined('48b5t9')) {
+    header("Location: /");
+    die("ERRO: Página não encontrada!");
+}
+
+
+class ConfigController extends Config {
 
     //Atibutos
     //
@@ -19,6 +26,10 @@ class ConfigController {
     //
     //Função contrutora, sem que iniciado o projeto esta função é criada obrigatoriamente
     public function __construct() {
+        //class ConfigController extends Config permite estanciar método abaxio
+        $config = new \Core\Config();
+        $config->config();
+
         if (!empty(filter_input(INPUT_GET, "url", FILTER_DEFAULT))) {
             //método recebe via GET o que é escrito na barra de endereço no navegador, atribui ao atributo private string $url;
             $this->url = filter_input(INPUT_GET, "url", FILTER_DEFAULT);
@@ -50,8 +61,6 @@ class ConfigController {
         }
 
 
-        echo "<br> Aqui esta a posição 0 da String urlController { $this->urlController } <br>";
-        echo "<br> Aqui está a posição 1 da String urlController que foi submetida à String urlParametro { $this->urlParametro } <br>";
     }
 
     //Função com nome sujestivo, limpando alguns dos caracteres especiais da barra de edereço, no nosso caso atributo url
